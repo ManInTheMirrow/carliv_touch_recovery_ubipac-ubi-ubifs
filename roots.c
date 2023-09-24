@@ -360,7 +360,7 @@ int ensure_path_mounted_at_mount_point(const char* path, const char* mount_point
             goto out_ubi_detach;
         }
 
-        sprintf(value, "/dev/ubi%d_0", dev_info.dev_num);
+        sprintf(value, "/dev/ubi0_userdata", dev_info.dev_num);
 
         /* Print information about the created device */
         //err = ubi_get_vol_info1(libubi, dev_info.dev_num, 0, &vol_info);
@@ -669,7 +669,7 @@ static int format_ubifs_volume(const char* location) {
     req2.name = location;
     req2.vol_type = UBI_DYNAMIC_VOLUME;
 
-    sprintf(ubinode, "/dev/ubi%d", dev_info.dev_num);
+    sprintf(ubinode, "/dev/ubi0_userdata", dev_info.dev_num);
 
     err = ubi_mkvol(libubi, ubinode, &req2);
     if (err < 0) {
